@@ -1,0 +1,16 @@
+# Ignore Python virtual environments
+.venv/
+
+# Ignore temporary files
+*.pyc
+__pycache__/
+
+# Ignore build and distribution directories
+dist/
+
+# Ignore IDE/editor settings
+.vscode/
+.idea/
+
+# Ignore Streamlit configuration
+.streamlit/

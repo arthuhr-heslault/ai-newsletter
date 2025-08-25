@@ -1,0 +1,11 @@
+streamlit>=1.37.0
+feedparser>=6.0.11
+python-dateutil>=2.9.0.post0
+requests>=2.32.3
+beautifulsoup4>=4.12.3
+html5lib>=1.1
+pydantic>=2.8.2
+tenacity>=8.3.0
+# Optional summarization extras (uncomment to use)
+# crewai>=0.51.0
+# openai>=1.40.0
