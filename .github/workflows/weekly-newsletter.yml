@@ -33,3 +33,4 @@ jobs:
       with:
         name: html-digest
         path: docs/index.html
+# Re-trigger workflow
