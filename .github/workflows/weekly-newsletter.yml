@@ -1,6 +1,9 @@
 name: Weekly Newsletter
 
 on:
+  push:
+    branches:
+      - main
   schedule:
     - cron: "0 11 * * 5" # Runs every Friday at 1 PM Paris time (11 AM UTC)
 
@@ -29,5 +32,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: html-digest
-        path: docs/index.html# Test trigger
-# Test trigger
+        path: docs/index.html
