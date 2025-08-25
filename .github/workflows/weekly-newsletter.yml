@@ -30,3 +30,4 @@ jobs:
       with:
         name: html-digest
         path: docs/index.html# Test trigger
+# Test trigger
