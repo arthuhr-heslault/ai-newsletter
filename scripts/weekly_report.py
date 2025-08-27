@@ -16,6 +16,12 @@ sys.path.append(str(pathlib.Path(__file__).resolve().parent.parent))
 
 from src.sources import DEFAULT_SOURCES
 
+# Filter sources to exclude arXiv
+def filter_sources(sources):
+    return [src for src in sources if "arxiv" not in src.get("url", "").lower()]
+
+DEFAULT_SOURCES = filter_sources(DEFAULT_SOURCES)
+
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -213,7 +219,7 @@ def render_html(articles: List[Article], period_days: int, summary: str) -> str:
       <div class=\"meta\">Generated on {now.strftime('%Y-%m-%d %H:%M')} · Last {period_days} days</div>
     </div>
     {body}
-    <div class=\"footer small\">Theme: #009ddf blue on white with black text.</div>
+    <div class="footer small"></div>
   </div>
 </body>
 </html>
@@ -262,8 +268,10 @@ def main() -> None:
     out_dir = pathlib.Path("dist")
     out_dir.mkdir(parents=True, exist_ok=True)
 
+    # Filter articles with 'agent' keyword
     all_articles = load_articles(DEFAULT_SOURCES)
-    recent = filter_last_days_top_n(all_articles, period_days, 10)
+    filtered_articles = [a for a in all_articles if "agent" in a.title.lower() or "agent" in (a.summary or "").lower()]
+    recent = filter_last_days_top_n(filtered_articles, period_days, 10)
 
     summary = generate_summary(recent)
     html = render_html(recent, period_days, summary)
